@@ -1,8 +1,7 @@
 # Project: othello_dll
 
-CPP      = g++.exe
-CC       = gcc.exe
-WINDRES  = windres.exe
+CPP      = g++
+CC       = gcc
 OBJ      = dllmain.o dll.o
 LINKOBJ  = dllmain.o dll.o
 LIBS     = -static-libgcc -m32
