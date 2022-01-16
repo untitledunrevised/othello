@@ -1,15 +1,19 @@
-.SUFFIXES:.c .o
+# Project: othello_so
 
-CC = gcc
-SRCS = othello.c
-OBJS = othello.o
-EXEC = libothello.so
+CC       = gcc
+OBJ      = othello.o
+BIN      = libothello.so
+RM       = rm -f
 
-start: $(OBJS)
-	$(CC) -shared -o $(EXEC) $(OBJS)
+.PHONY: all all-before all-after clean clean-custom
 
-.c.o:
-	$(CC) -fPIC -Wall -o $@ -c $<
+all: all-before $(BIN) all-after
 
-clean:
-	rm -rf $(EXEC) $(OBJS)
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(LINKOBJ)
+	$(CC) -shared -o $(BIN) $(OBJ) -m32
+
+OBJ: othello.c
+	$(CC) -fPIC -o $(OBJ) -c othello.c
